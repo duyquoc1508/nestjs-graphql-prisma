@@ -3,11 +3,11 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Pet {
   @Field(() => ID)
-  id: number;
+  readonly id: string;
 
   @Field()
-  name: string;
+  readonly name: string;
 
   @Field({ nullable: true })
-  type?: string;
+  readonly type?: string;
 }

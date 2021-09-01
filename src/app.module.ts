@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
+import { PrismaService } from './prisma.service';
+import { PetsService } from './pets/pets.service';
 
 @Module({
   imports: [
@@ -13,6 +15,6 @@ import { join } from 'path';
     PetsModule
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, PrismaService, PetsService]
 })
 export class AppModule {}

@@ -9,5 +9,14 @@ type Pet {
 }
 
 type Query {
-  pets: [Pet!]!
+  findAll: [Pet!]!
+}
+
+type Mutation {
+  createPet(createPetInput: CreatePetInput!): Pet!
+}
+
+input CreatePetInput {
+  name: String!
+  type: String!
 }
