@@ -6,13 +6,15 @@ import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
 import { PrismaService } from './prisma.service';
 import { PetsService } from './pets/pets.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
-    PetsModule
+    PetsModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService, PetsService]
