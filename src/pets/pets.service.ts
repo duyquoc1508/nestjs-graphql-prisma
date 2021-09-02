@@ -8,15 +8,7 @@ import { Pet } from './pets.model';
 export class PetsService {
   constructor(private prismaService: PrismaService) {}
 
-  async createPet(createPetInput: Prisma.PetCreateInput): Promise<Pet> {
-    // console.log(typeof data)
-    // console.log(data);
-    console.log('service');
-    // return {
-    //   id: "321321321321",
-    //   name: "fewfew",
-    //   type: "fefwafewa",
-    // }
+  async createPet(createPetInput: CreatePetInput): Promise<Pet> {
     return this.prismaService.pet.create({
       data: createPetInput
     });
@@ -24,5 +16,13 @@ export class PetsService {
 
   async findAll(): Promise<Pet[]> {
     return this.prismaService.pet.findMany();
+  }
+
+  async getPet(id: string): Promise<Pet> {
+    return this.prismaService.pet.findUnique({
+      where: {
+        id
+      }
+    });
   }
 }
