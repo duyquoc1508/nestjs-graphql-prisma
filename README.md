@@ -44,3 +44,4 @@ npx prisma generate
 
 ## Notes:
 Prisma require using mongo support transaction (mongo replica set)
+Nếu sử dụng prisma thì không cần file service mà query trực tiếp trong resolver cũng được

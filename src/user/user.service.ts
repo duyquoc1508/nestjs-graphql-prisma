@@ -13,6 +13,10 @@ export class UserService {
     });
   }
 
+  findUnique(where: UserUniqueInput): Promise<User> {
+    return this.prismaService.user.findUnique({ where });
+  }
+
   findMany(): Promise<User[]> {
     return this.prismaService.user.findMany();
   }

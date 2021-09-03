@@ -21,16 +21,30 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  published: Boolean!
+  viewCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  authorId: ID!
+  author: User!
+}
+
 type Query {
   findAll: [Pet!]!
   findOne(id: ID!): Pet!
   users: [User!]!
+  posts: [Post!]!
 }
 
 type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserUniqueInput!): User!
+  createOnePost(authorId: String!, data: PostCreateInput!): Post!
 }
 
 input CreatePetInput {
@@ -50,4 +64,9 @@ input UserUpdateInput {
 
 input UserUniqueInput {
   id: String!
+}
+
+input PostCreateInput {
+  title: String!
+  content: String!
 }
