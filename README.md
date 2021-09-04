@@ -3,7 +3,7 @@
 ```
 nest new project_name
 ```
-### Initial resolver
+### Initial resolver (create partial)
 - create module
 ```
 nest g module pets
@@ -18,6 +18,12 @@ nest g service pets
 ```
 nest g resolver pets
 ```
+
+### For quickly creating a CRUD controller with the validation built-in, you may use the CLI's CRUD generator (create full module with module, controller, service, dto,...) 
+```
+nest g resource [name].
+```
+
 ### Generate GraphQL schema
 
 add config GraphQl in app module
@@ -45,3 +51,7 @@ npx prisma generate
 ## Notes:
 Prisma require using mongo support transaction (mongo replica set)
 Nếu sử dụng prisma thì không cần file service mà query trực tiếp trong resolver cũng được
+
+### Folder dto
+- `REST API` => *.dto.ts
+- `GraphQR` => *.input.ts

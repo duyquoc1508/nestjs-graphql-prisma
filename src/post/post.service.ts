@@ -1,11 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { PostCreateInput } from './dto';
-import { Post } from './post.model';
+import { Post } from './models/post';
 
 @Injectable()
 export class PostService {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(data: PostCreateInput, authorId: string): Promise<Post> {
     return this.prismaService.post.create({

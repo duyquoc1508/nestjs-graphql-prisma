@@ -1,4 +1,3 @@
-import { Inject } from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -8,16 +7,16 @@ import {
   Root
 } from '@nestjs/graphql';
 import { PrismaService } from 'src/prisma.service';
-import { User } from 'src/user/user.model';
+import { User } from 'src/user/models/user';
 import { PostCreateInput } from './dto';
-import { Post } from './post.model';
+import { Post } from './models/post';
 import { PostService } from './post.service';
 
 @Resolver((of) => Post)
 export class PostResolver {
   constructor(
-    @Inject(PostService) private postService: PostService,
-    @Inject(PrismaService) private prismaService: PrismaService
+    private readonly postService: PostService,
+    private readonly prismaService: PrismaService
   ) {}
 
   // use UserService or PrismaService directly
@@ -40,7 +39,7 @@ export class PostResolver {
     return this.postService.create(data, authorId);
   }
 
-  @Query((returns) => [Post])
+  @Query((returns) => [Post], { name: 'post' })
   posts(): Promise<Post[]> {
     return this.postService.findMany();
   }

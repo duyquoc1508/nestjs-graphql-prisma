@@ -9,7 +9,13 @@ export class User {
   readonly email: string;
 
   @Field()
-  readonly name: string;
+  readonly firstName: string;
+
+  @Field()
+  readonly lastName: string;
+
+  @Field()
+  readonly password: string;
 
   // @Field()
   // readonly posts : Post;
