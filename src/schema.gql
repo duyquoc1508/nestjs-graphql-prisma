@@ -11,7 +11,8 @@ type Pet {
 type User {
   id: ID!
   email: String!
-  name: String!
+  firstName: String!
+  lastName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -33,28 +34,29 @@ type Post {
   author: User!
 }
 
+type UserToken {
+  accessToken: String!
+  user: User!
+}
+
 type Query {
   findAll: [Pet!]!
   findOne(id: ID!): Pet!
   users: [User!]!
-  posts: [Post!]!
+  post: [Post!]!
 }
 
 type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
-  createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserUniqueInput!): User!
   createOnePost(authorId: String!, data: PostCreateInput!): Post!
+  register(input: AuthRegisterInput!): UserToken!
+  login(input: AuthLoginInput!): UserToken!
 }
 
 input CreatePetInput {
   name: String!
   type: String!
-}
-
-input UserCreateInput {
-  email: String!
-  name: String!
 }
 
 input UserUpdateInput {
@@ -69,4 +71,16 @@ input UserUniqueInput {
 input PostCreateInput {
   title: String!
   content: String!
+}
+
+input AuthRegisterInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+input AuthLoginInput {
+  email: String!
+  password: String!
 }

@@ -55,3 +55,12 @@ Nếu sử dụng prisma thì không cần file service mà query trực tiếp 
 ### Folder dto
 - `REST API` => *.dto.ts
 - `GraphQR` => *.input.ts
+
+### Common error
+1. exists a field require in .prisma but not exists in db. Trường hợp thay đổi schema.prisma. nếu dữ liệu cũ không có field mới mà field mới require trong schema.prisma thì sẽ bị lỗi này
+
+![common error 1](images/common-error1.png)
+
+2. Lỗi này do khai báo type không hợp lệ. input hoặc return giữa prisma và service không khớp
+
+![common error 2](images/common-error2.png)
