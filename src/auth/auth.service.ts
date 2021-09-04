@@ -1,12 +1,26 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma.service';
 import { AuthHelper } from './auth.helper';
 import { AuthLoginInput, AuthRegisterInput } from './dto';
+import { JwtDto } from './dto/jwt.dto';
 import { UserToken } from './models/user-token';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly jwtService: JwtService
+  ) {}
+
+  public async validateUser(userId: string) {
+    // if not found. prisma return null
+    return this.prismaService.user.findUnique({
+      where: {
+        id: userId
+      }
+    });
+  }
 
   async login(input: AuthLoginInput): Promise<UserToken> {
     const user = await this.prismaService.user.findUnique({
@@ -22,14 +36,15 @@ export class AuthService {
     if (!passwordValid) {
       throw new Error('Invalid password');
     }
+    const { password, ...result } = user;
     return {
-      accessToken: this.signToken(user.id),
-      user
+      accessToken: this.signToken({ userId: user.id }),
+      user: result
     };
   }
 
-  private signToken(id: string): string {
-    return 'temp token';
+  private signToken(payload: JwtDto): string {
+    return this.jwtService.sign(payload);
   }
 
   async register(input: AuthRegisterInput): Promise<UserToken> {
@@ -48,9 +63,10 @@ export class AuthService {
         password: hashPassword
       }
     });
+    const { password, ...result } = created;
     return {
-      accessToken: this.signToken(created.id),
-      user: created
+      accessToken: this.signToken({ userId: created.id }),
+      user: result
     };
   }
 }

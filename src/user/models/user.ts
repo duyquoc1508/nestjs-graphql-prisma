@@ -15,7 +15,7 @@ export class User {
   readonly lastName: string;
 
   // @Field() => not expose password
-  readonly password: string;
+  readonly password?: string;
 
   // @Field()
   // readonly posts : Post;

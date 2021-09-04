@@ -14,7 +14,7 @@ export class AuthResolver {
   }
 
   @Mutation((returns) => UserToken)
-  login(@Args('input') input: AuthLoginInput): Promise<UserToken> {
+  async login(@Args('input') input: AuthLoginInput): Promise<UserToken> {
     return this.authService.login(input);
   }
 }
