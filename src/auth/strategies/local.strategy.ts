@@ -1,21 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { User } from 'src/user/models/user';
+import { Strategy } from 'passport-local';
 import { AuthService } from '../auth.service';
 import { JwtDto } from '../dto/jwt.dto';
 
+// LocalStrategy: validate with username and password (classic)
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: process.env.SECRET_KEY
-    });
+    super();
   }
 
-  // override validate method of passportStrategy
   async validate(payload: JwtDto) {
     const user = await this.authService.validateUser(payload.userId);
     if (!user) {

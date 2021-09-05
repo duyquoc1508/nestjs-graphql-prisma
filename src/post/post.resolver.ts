@@ -1,11 +1,6 @@
-import {
-  Args,
-  Mutation,
-  Resolver,
-  Query,
-  ResolveField,
-  Root
-} from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
+import { Args, Mutation, Resolver, Query, ResolveField, Root } from '@nestjs/graphql';
+import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { PrismaService } from 'src/prisma.service';
 import { User } from 'src/user/models/user';
 import { PostCreateInput } from './dto';
@@ -32,6 +27,7 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post)
+  @UseGuards(GqlAuthGuard)
   createOnePost(
     @Args('data') data: PostCreateInput,
     @Args('authorId') authorId: string

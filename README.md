@@ -57,10 +57,19 @@ Nếu sử dụng prisma thì không cần file service mà query trực tiếp 
 - `GraphQR` => *.input.ts
 
 ### Common error
-1. exists a field require in .prisma but not exists in db. Trường hợp thay đổi schema.prisma. nếu dữ liệu cũ không có field mới mà field mới require trong schema.prisma thì sẽ bị lỗi này
+1. [Prisma] exists a field require in .prisma but not exists in db. Trường hợp thay đổi schema.prisma. nếu dữ liệu cũ không có field mới mà field mới require trong schema.prisma thì sẽ bị lỗi này
 
 ![common error 1](images/common-error1.png)
 
-2. Lỗi này do khai báo type không hợp lệ. input hoặc return giữa prisma và service không khớp
+2. [Gql] Lỗi này do khai báo type không hợp lệ. input hoặc return giữa prisma và service không khớp
 
 ![common error 2](images/common-error2.png)
+
+3. [Authorization]Chưa import strategy('jwt') vào provider của auth.module
+
+![common error 2](images/common-error3.png)
+
+4. [Prisma] Lỗi sử dụng toán tử connect nhưng không tìm thấy record để connect trong db (không tìm thấy user có `id = authorId` đó trong db)
+
+![common error 2](images/common-error4.1.png)
+![common error 2](images/common-error4.png)

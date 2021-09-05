@@ -13,15 +13,6 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  public async validateUser(userId: string) {
-    // if not found. prisma return null
-    return this.prismaService.user.findUnique({
-      where: {
-        id: userId
-      }
-    });
-  }
-
   async login(input: AuthLoginInput): Promise<UserToken> {
     const user = await this.prismaService.user.findUnique({
       where: {
@@ -41,10 +32,6 @@ export class AuthService {
       accessToken: this.signToken({ userId: user.id }),
       user: result
     };
-  }
-
-  private signToken(payload: JwtDto): string {
-    return this.jwtService.sign(payload);
   }
 
   async register(input: AuthRegisterInput): Promise<UserToken> {
@@ -68,5 +55,18 @@ export class AuthService {
       accessToken: this.signToken({ userId: created.id }),
       user: result
     };
+  }
+
+  public async validateUser(userId: string) {
+    // if not found. prisma return null
+    return this.prismaService.user.findUnique({
+      where: {
+        id: userId
+      }
+    });
+  }
+
+  private signToken(payload: JwtDto): string {
+    return this.jwtService.sign(payload);
   }
 }
