@@ -24,7 +24,7 @@ export class Post {
   @Field((type) => Date)
   readonly updatedAt: Date;
 
-  @Field((type) => ID)
+  // @Field((type) => ID)
   readonly authorId: string;
 
   @Field((type) => User)

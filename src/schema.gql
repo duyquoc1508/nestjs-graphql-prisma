@@ -30,7 +30,6 @@ type Post {
   viewCount: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
-  authorId: ID!
   author: User!
 }
 
@@ -42,14 +41,17 @@ type UserToken {
 type Query {
   findAll: [Pet!]!
   findOne(id: ID!): Pet!
-  users: [User!]!
-  post: [Post!]!
+  user: User!
+  posts: [Post!]!
+  post(id: String!): Post!
 }
 
 type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
-  updateUser(data: UserUpdateInput!, where: UserUniqueInput!): User!
-  createOnePost(authorId: String!, data: PostCreateInput!): Post!
+  updateUser(data: UserUpdateInput!): User!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, id: String!): Post!
+  deletePost(id: String!): Post!
   register(input: AuthRegisterInput!): UserToken!
   login(input: AuthLoginInput!): UserToken!
 }
@@ -60,17 +62,19 @@ input CreatePetInput {
 }
 
 input UserUpdateInput {
-  email: String!
-  name: String!
-}
-
-input UserUniqueInput {
-  id: String!
+  email: String
+  firstName: String
+  lastName: String
 }
 
 input PostCreateInput {
   title: String!
   content: String!
+}
+
+input PostUpdateInput {
+  title: String
+  content: String
 }
 
 input AuthRegisterInput {

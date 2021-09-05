@@ -59,11 +59,13 @@ export class AuthService {
 
   public async validateUser(userId: string) {
     // if not found. prisma return null
-    return this.prismaService.user.findUnique({
+    const user = await this.prismaService.user.findUnique({
       where: {
         id: userId
       }
     });
+    delete user.password;
+    return user;
   }
 
   private signToken(payload: JwtDto): string {
