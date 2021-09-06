@@ -70,4 +70,38 @@ export class PostService {
       }
     });
   }
+
+  async increasePostViewCount(id: string): Promise<Post> {
+    const post = await this.prismaService.post.update({
+      where: {
+        id
+      },
+      data: {
+        viewCount: {
+          increment: 1
+        }
+      }
+    });
+    if (!post) {
+      throw new NotFoundException('Post not found');
+    }
+    return post;
+  }
+
+  async togglePublishPost(userId: string, id: string): Promise<Post> {
+    const post = await this.prismaService.post.findUnique({
+      where: { id },
+      select: { published: true, authorId: true }
+    });
+    if (!post) {
+      throw new NotFoundException('Post not found');
+    }
+    if (post.authorId !== userId) {
+      throw new ForbiddenException(`You donn't have permission`);
+    }
+    return this.prismaService.post.update({
+      where: { id },
+      data: { published: !post.published }
+    });
+  }
 }

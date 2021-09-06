@@ -52,6 +52,8 @@ type Mutation {
   createPost(data: PostCreateInput!): Post!
   updatePost(data: PostUpdateInput!, id: String!): Post!
   deletePost(id: String!): Post!
+  increasePostViewCount(id: String!): Post!
+  togglePublishPost(id: String!): Post!
   register(input: AuthRegisterInput!): UserToken!
   login(input: AuthLoginInput!): UserToken!
 }

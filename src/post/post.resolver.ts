@@ -48,6 +48,18 @@ export class PostResolver {
     return this.postService.deletePost(user.id, id);
   }
 
+  @Mutation((reutrns) => Post)
+  @UseGuards(GqlAuthGuard)
+  increasePostViewCount(@Args('id') id: string): Promise<Post> {
+    return this.postService.increasePostViewCount(id);
+  }
+
+  @Mutation((reutrns) => Post)
+  @UseGuards(GqlAuthGuard)
+  togglePublishPost(@CtxUser() user: User, @Args('id') id: string): Promise<Post> {
+    return this.postService.togglePublishPost(user.id, id);
+  }
+
   // use UserService or PrismaService directly
   @ResolveField((returns) => User)
   author(@Root() post: Post): Promise<User> {
