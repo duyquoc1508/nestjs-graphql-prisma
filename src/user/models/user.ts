@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Role } from 'src/role/enum/role.enum';
 
 @ObjectType()
 export class User {
@@ -25,4 +26,6 @@ export class User {
 
   @Field(() => Date)
   readonly updatedAt: Date;
+
+  roles?: Role[];
 }
