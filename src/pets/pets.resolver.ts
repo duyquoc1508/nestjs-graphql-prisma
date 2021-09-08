@@ -4,7 +4,8 @@ import { PetsService } from './pets.service';
 import { CreatePetInput } from './dto';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
-import { RoleGuard } from 'src/role/guards/role.guard';
+import { Roles } from 'src/role/decorators/role.decorator';
+import { Role } from 'src/role/enum/role.enum';
 
 @Resolver((of) => Pet)
 export class PetsResolver {
@@ -22,7 +23,7 @@ export class PetsResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @UseGuards(RoleGuard)
+  @Roles(Role.Admin)
   @Query((returns) => Pet)
   findOne(@Args('id', { type: () => ID }) id: string): Promise<Pet> {
     return this.petService.getPet(id);
