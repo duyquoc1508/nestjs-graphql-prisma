@@ -6,6 +6,7 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { Roles } from 'src/role/decorators/role.decorator';
 import { Role } from 'src/role/enum/role.enum';
+import { RolesGuard } from 'src/role/guards/role.guard';
 
 @Resolver((of) => Pet)
 export class PetsResolver {
@@ -22,7 +23,7 @@ export class PetsResolver {
     return this.petService.findAll();
   }
 
-  @UseGuards(GqlAuthGuard)
+  @UseGuards(GqlAuthGuard, RolesGuard) // require authentication before authorization
   @Roles(Role.Admin)
   @Query((returns) => Pet)
   findOne(@Args('id', { type: () => ID }) id: string): Promise<Pet> {

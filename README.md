@@ -73,3 +73,9 @@ Nếu sử dụng prisma thì không cần file service mà query trực tiếp 
 
 ![common error 2](images/common-error4.1.png)
 ![common error 2](images/common-error4.png)
+
+5. [Authentication + Authorization] Không nhận được context của request.
+- Gql và Rest thì xử lý context khác nhau. Nếu gql thì phải dùng `GqlExecutionContext` để tạo lại context...
+- Phải đảm bảo authentication thực thi trước authorization thì mới lấy được info user login
+
+![common error 2](images/common-error5.png)

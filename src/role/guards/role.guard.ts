@@ -1,10 +1,11 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { ROLES_KEY } from '../decorators/role.decorator';
 import { Role } from '../enum/role.enum';
 
 @Injectable()
-export class RoleGuard implements CanActivate {
+export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
@@ -13,9 +14,13 @@ export class RoleGuard implements CanActivate {
       context.getClass()
     ]);
     if (!requiredRoles) {
-      return false; // if not exists ROLES_KEY => FORBIDDEN
+      return true; // if not exists ROLES_KEY => FORBIDDEN
     }
-    const { user } = context.switchToHttp().getRequest();
+    /** for graphql */
+    const ctx = GqlExecutionContext.create(context);
+    const { user } = ctx.getContext().req;
+    /** for rest api */
+    // const { user } = context.switchToHttp().getRequest();
     return requiredRoles.some((role) => user.role?.include(role));
   }
 }

@@ -17,6 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
   // provide the verify callback by implementing a validate() method
   async validate(payload: JwtDto) {
+    // auto bind data from payload of token after decoded to here
     const user = await this.authService.validateUser(payload.userId);
     if (!user) {
       throw new UnauthorizedException();
