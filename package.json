@@ -29,6 +29,8 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-socket.io": "^8.4.2",
+    "@nestjs/websockets": "^8.4.2",
     "@prisma/client": "^2.30.2",
     "apollo-server-express": "^3.3.0",
     "bcrypt": "^5.0.1",

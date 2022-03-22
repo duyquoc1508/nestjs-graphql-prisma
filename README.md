@@ -1,5 +1,14 @@
+## Project include
+- Rest API
+- Graphql
+- Socket.IO
+- Authentication with JWT
+- Authorization
+- Prisma ODM
+- MongoDB database
+
 ## Part 1:
-### Project setup 
+### Project setup
 ```
 nest new project_name
 ```
@@ -19,7 +28,7 @@ nest g service pets
 nest g resolver pets
 ```
 
-### For quickly creating a CRUD controller with the validation built-in, you may use the CLI's CRUD generator (create full module with module, controller, service, dto,...) 
+### For quickly creating a CRUD controller with the validation built-in, you may use the CLI's CRUD generator (create full module with module, controller, service, dto,...)
 ```
 nest g resource [name].
 ```
@@ -45,7 +54,7 @@ npx prisma generate
 ## Part 3:
 ### Mutations
 ### Validation
-### Auto generate all the things 
+### Auto generate all the things
 ### Db relationship
 
 ## Notes:

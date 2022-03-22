@@ -10,6 +10,7 @@ import { PetsService } from './pets/pets.service';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { AuthModule } from './auth/auth.module';
     PetsModule,
     UserModule,
     PostModule,
-    AuthModule
+    AuthModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService]
