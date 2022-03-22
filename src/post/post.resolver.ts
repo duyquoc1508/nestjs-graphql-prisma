@@ -48,13 +48,13 @@ export class PostResolver {
     return this.postService.deletePost(user.id, id);
   }
 
-  @Mutation((reutrns) => Post)
+  @Mutation((returns) => Post)
   @UseGuards(GqlAuthGuard)
   increasePostViewCount(@Args('id') id: string): Promise<Post> {
     return this.postService.increasePostViewCount(id);
   }
 
-  @Mutation((reutrns) => Post)
+  @Mutation((returns) => Post)
   @UseGuards(GqlAuthGuard)
   togglePublishPost(@CtxUser() user: User, @Args('id') id: string): Promise<Post> {
     return this.postService.togglePublishPost(user.id, id);
