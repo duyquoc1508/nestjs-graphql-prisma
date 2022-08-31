@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Mutation } from '@nestjs/graphql';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePetInput } from './dto';
 import { Pet } from './pets.model';
 

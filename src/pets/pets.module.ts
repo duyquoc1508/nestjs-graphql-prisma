@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PetsService } from './pets.service';
 import { PetsResolver } from './pets.resolver';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { RolesGuard } from 'src/role/guards/role.guard';
 import { APP_GUARD } from '@nestjs/core';
 

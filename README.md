@@ -6,6 +6,9 @@
 - Authorization
 - Prisma ODM
 - MongoDB database
+- Microservice
+- Websocket
+- Redis pub/sub
 
 ## Part 1:
 ### Project setup

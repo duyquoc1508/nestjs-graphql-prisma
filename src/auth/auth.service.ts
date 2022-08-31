@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthHelper } from './auth.helper';
 import { AuthLoginInput, AuthRegisterInput } from './dto';
 import { JwtDto } from './dto/jwt.dto';

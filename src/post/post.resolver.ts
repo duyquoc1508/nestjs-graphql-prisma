@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver, Query, ResolveField, Root } from '@nestjs/graphql';
 import { CtxUser } from 'src/auth/decorators/ctx-user.decorator';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from 'src/user/models/user';
 import { PostCreateInput } from './dto';
 import { PostUpdateInput } from './dto/post-update.input';

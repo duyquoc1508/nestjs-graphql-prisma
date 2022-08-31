@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { PostCreateInput } from './dto';
 import { PostUpdateInput } from './dto/post-update.input';
 import { Post } from './models/post';
