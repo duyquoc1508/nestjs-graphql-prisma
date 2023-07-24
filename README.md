@@ -91,3 +91,13 @@ Nếu sử dụng prisma thì không cần file service mà query trực tiếp 
 - Phải đảm bảo authentication thực thi trước authorization thì mới lấy được info user login
 
 ![common error 2](images/common-error5.png)
+
+6. Encountered an UNDEFINED dependency. có thể là do circular import
+dùng forward ref trong service
+
+![common error 3](images/dependency.png)
+
+7. Lối do import module chéo lẫn nhau
+dùng forward ref trong import
+
+![common error 3](images/import_module.png)
